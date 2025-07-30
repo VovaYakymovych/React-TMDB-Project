@@ -1,6 +1,6 @@
 
 
-const MoviePage = () => {
+const MovieInfo = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const MoviePage = () => {
     );
 };
 
-export default MoviePage;
+export default MovieInfo;
