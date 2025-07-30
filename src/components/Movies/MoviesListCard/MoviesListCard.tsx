@@ -1,9 +1,14 @@
+import type {FC} from "react";
+import type {IMovie} from "../../../models/IMovie.ts";
 
+type MovieListPropsType ={
+    item: IMovie
+}
 
-const MoviesListCard = () => {
+const MoviesListCard:FC<MovieListPropsType> = ({item}) => {
     return (
         <div>
-
+            {item.id}
         </div>
     );
 };
