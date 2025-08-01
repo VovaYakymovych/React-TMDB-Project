@@ -2,6 +2,7 @@ import { useAppSelector } from "../../hooks/useAppSelector.ts";
 import { MovieActions } from "../../redux/slices/movieSlice.ts";
 import { useAppDispatch } from "../../hooks/useAppDispatch.tsx";
 import { useSearchParams } from "react-router-dom";
+import './Pagination.css'
 
 const Pagination = () => {
     const dispatch = useAppDispatch();
@@ -13,7 +14,7 @@ const Pagination = () => {
     const pageCount = total_pages ? (total_pages > 500 ? 500 : total_pages) : 500
 
     const getPageNumbers = () => {
-        const maxPagesToShow = 10
+        const maxPagesToShow = 11
         let startPage = Math.max(1, current_page - 5)
         let endPage = startPage + maxPagesToShow - 1
 
@@ -41,7 +42,7 @@ const Pagination = () => {
 
     return (
         <div className="pagination">
-            <button
+            <button className={'pagination-button-left'}
                 onClick={() => handlePageChange(current_page - 1)}
                 disabled={current_page === 1}
             >
@@ -49,16 +50,16 @@ const Pagination = () => {
             </button>
 
             {pageNumbers.map((page) => (
-                <button
+                <button className={'pagination-page-button'}
                     key={page}
                     onClick={() => handlePageChange(page)}
                     disabled={page === current_page}
                 >
-                    {page === current_page ? `|${page}|` : page}
+                    {page === current_page ? `${page}` : page}
                 </button>
             ))}
 
-            <button
+            <button className={'pagination-button-right'}
                 onClick={() => handlePageChange(current_page + 1)}
                 disabled={current_page === pageCount}
             >
