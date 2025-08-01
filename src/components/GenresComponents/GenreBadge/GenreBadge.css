@@ -1,0 +1,17 @@
+.genreBadges{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 8px;
+
+}
+.Badge{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.7rem;
+    width: fit-content;
+    padding: 10px;
+    background-color: #ae1130;
+    color: white;
+    border-radius: 10px;
+}

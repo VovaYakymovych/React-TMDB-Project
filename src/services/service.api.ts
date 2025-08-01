@@ -6,9 +6,7 @@ export const moviesServices = {
     getMovies: async (page: number): Promise<ITmdbMoviesResponse | null> => {
         try {
             const {data} = await axiosInstance.get<ITmdbMoviesResponse>('/discover/movie', {params: {
-                    // include_adult: 'true',
-                    // include_video: 'true',
-                    // sort_by: 'primary_release_date.desc',
+                    include_video: 'true',
                     page: page.toString()}});
             return data
         } catch (error) {

@@ -9,7 +9,7 @@ type movieSliceType = {
     current_page: number,
     genres: IGenre[]
 }
-const initMovieState : movieSliceType = {
+const initMovieState: movieSliceType = {
     movies: [],
     total_pages: 500,
     current_page: 1,
@@ -17,12 +17,12 @@ const initMovieState : movieSliceType = {
 }
 
 
-const loadMovies = createAsyncThunk('loadMovies', async (currentPage: number,thunkAPI) => {
-    const movies= await moviesServices.getMovies(currentPage)
+const loadMovies = createAsyncThunk('loadMovies', async (currentPage: number, thunkAPI) => {
+    const movies = await moviesServices.getMovies(currentPage)
     return thunkAPI.fulfillWithValue(movies)
 })
 
-const loadGenres = createAsyncThunk('loadGenres', async (_,thunkAPI) => {
+const loadGenres = createAsyncThunk('loadGenres', async (_, thunkAPI) => {
     const genres = await moviesServices.getGenres()
     return thunkAPI.fulfillWithValue(genres)
 })
@@ -30,7 +30,12 @@ const loadGenres = createAsyncThunk('loadGenres', async (_,thunkAPI) => {
 export const movieSlice = createSlice({
     name: 'movieSlice',
     initialState: initMovieState,
-    reducers: {},
+    reducers: {
+        setCurrentPage: (state, action) => {
+            state.current_page = action.payload;
+        }
+
+    },
     extraReducers: builder => builder
         .addCase(loadMovies.fulfilled, (state, action) => {
             state.movies = action.payload?.results || []

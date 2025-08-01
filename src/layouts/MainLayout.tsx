@@ -1,10 +1,11 @@
 import Header from "../components/Header/Header.tsx";
 import {Outlet} from "react-router-dom";
+import './MainLayout.css'
 
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className={'MainLayout'}>
             <Header/>
             <Outlet/>
         </div>
