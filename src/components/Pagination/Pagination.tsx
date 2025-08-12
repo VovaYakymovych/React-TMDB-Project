@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../hooks/useAppSelector.ts";
+import { useAppSelector } from "../../hooks/useAppSelector.tsx";
 import { MovieActions } from "../../redux/slices/movieSlice.ts";
 import { useAppDispatch } from "../../hooks/useAppDispatch.tsx";
 import { useSearchParams } from "react-router-dom";

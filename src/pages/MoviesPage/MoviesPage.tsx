@@ -1,4 +1,4 @@
-import MoviesList from "../../components/Movies/MoviesList/MoviesList.tsx";
+import MoviesList from "../../components/MoviesComponents/MoviesList/MoviesList.tsx";
 import Pagination from "../../components/Pagination/Pagination.tsx";
 import './MoviesPage.css'
 

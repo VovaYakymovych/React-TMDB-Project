@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {useAppSelector} from "../../../hooks/useAppSelector.ts";
+import {useAppSelector} from "../../../hooks/useAppSelector.tsx";
 import {MovieActions} from "../../../redux/slices/movieSlice.ts";
 import MoviesListCard from "../MoviesListCard/MoviesListCard.tsx";
 import {useAppDispatch} from "../../../hooks/useAppDispatch.tsx";

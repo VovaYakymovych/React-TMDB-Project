@@ -7,25 +7,45 @@ type movieSliceType = {
     movies: IMovie[],
     total_pages: number,
     current_page: number,
-    genres: IGenre[]
+    genres: IGenre[],
+    searchedMovies: IMovie[],
+    searchedTotalPages: number,
+    trailerUrl: string
 }
 const initMovieState: movieSliceType = {
     movies: [],
     total_pages: 500,
     current_page: 1,
-    genres: []
+    genres: [],
+    searchedMovies: [],
+    searchedTotalPages: 0,
+    trailerUrl: ''
 }
 
-
-const loadMovies = createAsyncThunk('loadMovies', async (currentPage: number, thunkAPI) => {
+const loadMovies = createAsyncThunk(
+    'loadMovies', async (currentPage: number, thunkAPI) => {
     const movies = await moviesServices.getMovies(currentPage)
     return thunkAPI.fulfillWithValue(movies)
 })
 
-const loadGenres = createAsyncThunk('loadGenres', async (_, thunkAPI) => {
+const loadGenres = createAsyncThunk(
+    'loadGenres', async (_, thunkAPI) => {
     const genres = await moviesServices.getGenres()
     return thunkAPI.fulfillWithValue(genres)
 })
+
+const loadSearchedMovies = createAsyncThunk(
+    'loadSearchedMovies', async ({query, page}: { query: string, page: number }, thunkAPI) => {
+    const searchedMovies = await moviesServices.getSearchedMovies(query, page)
+    return thunkAPI.fulfillWithValue(searchedMovies)
+})
+
+const loadTrailer = createAsyncThunk(
+    'loadTrailer', async (movieId: number, thunkAPI) => {
+        const trailer = await moviesServices.getTrailer(movieId);
+        return thunkAPI.fulfillWithValue(trailer);
+    }
+);
 
 export const movieSlice = createSlice({
     name: 'movieSlice',
@@ -34,7 +54,6 @@ export const movieSlice = createSlice({
         setCurrentPage: (state, action) => {
             state.current_page = action.payload;
         }
-
     },
     extraReducers: builder => builder
         .addCase(loadMovies.fulfilled, (state, action) => {
@@ -54,10 +73,29 @@ export const movieSlice = createSlice({
             console.log(state);
             console.log(action);
         })
+        .addCase(loadSearchedMovies.fulfilled, (state, action) => {
+            state.searchedMovies = action.payload?.results || [];
+            state.searchedTotalPages = action.payload?.total_pages || 0;
+        })
+        .addCase(loadSearchedMovies.rejected, (state, action) => {
+            console.error('Failed to load searched movies:', action.error.message);
+            console.log(state);
+            console.log(action);
+        })
+        .addCase(loadTrailer.fulfilled, (state, action) => {
+            state.trailerUrl = action.payload || '';
+        })
+        .addCase(loadTrailer.rejected, (state, action) => {
+            console.error('Failed to load trailer:', action.error.message);
+            console.log(state);
+            console.log(action);
+        })
 })
 
 export const MovieActions = {
     ...movieSlice.actions,
     loadMovies,
-    loadGenres
+    loadGenres,
+    loadSearchedMovies,
+    loadTrailer
 }

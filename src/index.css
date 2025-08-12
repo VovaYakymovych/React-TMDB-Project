@@ -4,5 +4,6 @@
     padding: 0;
     box-sizing: border-box;
     border: none;
-    font-family: 'Plus Jakarta Sans', sans-serifw;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-decoration: none;
 }
