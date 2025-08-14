@@ -2,6 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 64px;
-    padding: 164px 0;
+    gap: 50px;
+    padding: 154px 0;
 }

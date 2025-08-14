@@ -4,7 +4,7 @@
     justify-content: space-between;
     height: 104px;
     width: 100%;
-    padding: 32px 27px;
+    padding: 32px 57px;
     background-color: crimson;
     color: white;
     position: fixed;
@@ -16,4 +16,13 @@
     font-weight: 700;
     text-decoration: none;
     color: white;
+    transition: 0.2s;
+}
+.logo:hover{
+    scale: 1.05;
+    color: #edecec;
+    transition: 0.2s;
+    background-color: #ae1130;
+    padding:  7px;
+    border-radius: 14px;
 }
