@@ -57,9 +57,9 @@
     font-size: 1.1rem;
     margin-bottom: 10px;
 }
-.imdb-logo {
-    background-color: gold;
-    color: black;
+.tmdb-logo {
+    background-color: #1181f1;
+    color: #ffffff;
     font-weight: bold;
     padding: 2px 5px;
     border-radius: 3px;

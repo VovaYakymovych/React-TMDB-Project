@@ -10,7 +10,9 @@ type movieSliceType = {
     genres: IGenre[],
     searchedMovies: IMovie[],
     searchedTotalPages: number,
-    trailerUrl: string
+    trailerUrl: string,
+    genreFilteredMovies: IMovie[],
+    genreFilteredTotalPages: number
 }
 const initMovieState: movieSliceType = {
     movies: [],
@@ -19,7 +21,9 @@ const initMovieState: movieSliceType = {
     genres: [],
     searchedMovies: [],
     searchedTotalPages: 0,
-    trailerUrl: ''
+    trailerUrl: '',
+    genreFilteredMovies: [],
+    genreFilteredTotalPages: 0
 }
 
 const loadMovies = createAsyncThunk(
@@ -46,6 +50,13 @@ const loadTrailer = createAsyncThunk(
         return thunkAPI.fulfillWithValue(trailer);
     }
 );
+
+const loadMoviesByGenres = createAsyncThunk(
+    'loadMoviesByGenres', async ({genres, page}: { genres: number[], page: number }, thunkAPI) => {
+        const response = await moviesServices.getMoviesByGenres(genres, page);
+        return thunkAPI.fulfillWithValue(response);
+    }
+)
 
 export const movieSlice = createSlice({
     name: 'movieSlice',
@@ -90,6 +101,15 @@ export const movieSlice = createSlice({
             console.log(state);
             console.log(action);
         })
+        .addCase(loadMoviesByGenres.fulfilled, (state, action) => {
+            state.genreFilteredMovies = action.payload?.results || [];
+            state.genreFilteredTotalPages = action.payload?.total_pages || 0;
+        })
+        .addCase(loadMoviesByGenres.rejected, (state, action) => {
+            console.error('Failed to load movies by genres:', action.error.message);
+            console.log(state);
+            console.log(action);
+        })
 })
 
 export const MovieActions = {
@@ -97,5 +117,6 @@ export const MovieActions = {
     loadMovies,
     loadGenres,
     loadSearchedMovies,
-    loadTrailer
+    loadTrailer,
+    loadMoviesByGenres
 }

@@ -65,5 +65,21 @@ export const moviesServices = {
             console.error('Error fetching movie by id:', error);
             return null;
         }
+    },
+    getMoviesByGenres: async (genres: number[], page: number): Promise<ITmdbMoviesResponse | null> => {
+        try {
+            const {data} = await axiosInstance.get(`/discover/movie`, {
+                params: {
+                    with_genres: genres.join(','),
+                    page: page.toString()
+                }
+            });
+            console.log(data);
+            return data;
+
+        } catch (error) {
+            console.error('Error fetching movie by genres:', error);
+            return null;
+        }
     }
 }

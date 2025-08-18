@@ -37,7 +37,7 @@ const MovieInfo = () => {
                         <div className="movie-meta">
 
                             <div className="imdb-rating">
-                                <span className="imdb-logo">IMDb</span>
+                                <span className="tmdb-logo">TMDb</span>
                                 <span>{movie.vote_average}</span>
                             </div>
                             <span className={'separator'}>|</span>

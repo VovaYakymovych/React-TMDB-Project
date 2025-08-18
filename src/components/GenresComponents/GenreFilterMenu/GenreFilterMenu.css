@@ -1,0 +1,30 @@
+.genre-filter-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    padding: 20px;
+}
+.genre-filter-menu.open {
+    transform: translateX(0);
+}
+.genre-filter-menu button {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #880f26;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.genre-filter-menu button:hover {
+    background-color: #aa1238;
+}

@@ -1,13 +1,22 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import './SearchMovies.css';
-import type {ChangeEvent} from "react";
+import {type ChangeEvent, useState} from "react";
+import {SearchInputValidator} from "../../services/helpers/SearchInputValidator.ts";
 
 const SearchMovies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
+    const [error, setError] = useState<string | null>(null);
 
     const handleChange = (event:ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
+
+        const { error } = SearchInputValidator.validate(value);
+        if (error) {
+            setError(error.message);
+            return;
+        }
+
         searchParams.set("query", value);
         searchParams.set("page", "1");
         setSearchParams(searchParams);
@@ -23,6 +32,7 @@ const SearchMovies = () => {
                 value={searchParams.get("query") || ""}
                 onChange={handleChange}
             />
+            {error && <p className="searchMoviesError">{error}</p>}
         </form>
     );
 };
