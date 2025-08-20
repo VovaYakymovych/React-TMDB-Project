@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GenreList from "../GenreList/GenreList.tsx";
 import './GenreFilterMenu.css'
+import UserInfo from "../../UserInfo/UserInfo.tsx";
 
 const GenreFilterMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -38,13 +39,15 @@ const GenreFilterMenu = () => {
 
 
             <div className={`genre-filter-menu${isOpen ? " open" : ""}`}>
+                <UserInfo name="Vova" />
+
                 {/*{isOpen && (*/}
                     <>
-                        <h3>Select Genres</h3>
+                        <h3>Select Genres:</h3>
 
                         <GenreList selectedGenres={selectedGenres} toggleGenre={toggleGenre} />
 
-                        <div>
+                        <div className={'genre-filter-menu-button-wrapper'}>
                             <button onClick={applyFilter}>Submit</button>
                         </div>
                     </>

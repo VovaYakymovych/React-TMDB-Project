@@ -33,7 +33,7 @@
     top: 154px;
     right: 10px;
     width: 344px;
-    height: 854px;
+    height: 934px;
     border-radius: 20px;
     padding: 40px;
 
@@ -64,6 +64,11 @@
     font-size: 1.2rem;
     font-weight: 700;
     transition: 0.2s;
+}
+.genre-filter-menu-button-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .genre-filter-menu button:hover {
     background-color: #510816;
