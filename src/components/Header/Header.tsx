@@ -2,6 +2,7 @@ import './Header.css'
 import SearchMovies from "../SearchMovies/SearchMovies.tsx";
 import {Link} from "react-router-dom";
 import GenreFilterMenu from "../GenresComponents/GenreFilterMenu/GenreFilterMenu.tsx";
+import ThemeSwitchButton from "../../context/Theme/ThemeSwitchButton.tsx";
 
 
 const Header = () => {
@@ -18,6 +19,7 @@ const Header = () => {
             <div className={"search-theme-genres-wrapper"}>
                 <SearchMovies/>
                 <GenreFilterMenu/>
+                <ThemeSwitchButton/>
             </div>
 
 

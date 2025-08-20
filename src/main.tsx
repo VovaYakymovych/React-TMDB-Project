@@ -1,15 +1,15 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import {Provider} from "react-redux";
-// import {ThemeProvider} from "./context/Theme/ThemeProvider.tsx";
+import {ThemeProvider} from "./context/Theme/ThemeProvider.tsx";
 import {RouterProvider} from "react-router-dom";
 import {router} from "./routes/router.tsx";
 import {store} from "./redux/store.ts";
 
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-      {/*<ThemeProvider>*/}
+      <ThemeProvider>
           <RouterProvider router={router}/>
-      {/*</ThemeProvider>*/}
+      </ThemeProvider>
   </Provider>
 )

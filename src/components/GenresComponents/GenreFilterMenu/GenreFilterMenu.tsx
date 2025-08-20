@@ -18,25 +18,38 @@ const GenreFilterMenu = () => {
         if (selectedGenres.length > 0) {
             navigate(`/genres?genres=${selectedGenres.join(",")}`);
         } else {
-            navigate(`/genres`);
+            navigate(`/`);
         }
         setIsOpen(false);
     };
 
     return (
-        <div>
-            <button onClick={() => setIsOpen((prev) => !prev)}>
-                Filter by Genre
+        <div className={'GenresFilter'}>
+            <button
+                className={`menu-button ${isOpen ? "open" : ""}`}
+                onClick={() => setIsOpen(prev => !prev)}
+            >
+                <svg width="50" height="42" viewBox="0 0 24 24">
+                    <line className="line top" x1="3" y1="6" x2="21" y2="6"/>
+                    <line className="line middle" x1="3" y1="12" x2="21" y2="12"/>
+                    <line className="line bottom" x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
             </button>
 
-            {isOpen && (
-                <div className={`genre-filter-menu ${isOpen ? "open" : ""}`}>
-                    <GenreList selectedGenres={selectedGenres} toggleGenre={toggleGenre} />
-                    <div>
-                        <button onClick={applyFilter}>Submit</button>
-                    </div>
-                </div>
-            )}
+
+            <div className={`genre-filter-menu${isOpen ? " open" : ""}`}>
+                {/*{isOpen && (*/}
+                    <>
+                        <h3>Select Genres</h3>
+
+                        <GenreList selectedGenres={selectedGenres} toggleGenre={toggleGenre} />
+
+                        <div>
+                            <button onClick={applyFilter}>Submit</button>
+                        </div>
+                    </>
+                {/*)}*/}
+            </div>
         </div>
     );
 };
