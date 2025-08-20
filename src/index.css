@@ -7,3 +7,19 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     text-decoration: none;
 }
+
+[data-theme="light"] {
+    --bg: white;
+    --bg-header: #df173f;
+
+}
+[data-theme="dark"] {
+    --bg: #171717;
+    --bg-header: #ae1130;
+}
+
+
+body {
+    background-color: var(--bg);
+    transition: background-color 0.3s;
+}
